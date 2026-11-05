@@ -1,4 +1,11 @@
 const commercialPhone='556140426929';
+const adsConversion='AW-10780783077/AuuiCOKuo_wCEOXj1pQo';
+document.addEventListener('click',event=>{
+ const whatsappLink=event.target.closest('a[href^="https://wa.me/"]');
+ if(whatsappLink&&typeof window.gtag==='function'){
+  window.gtag('event','conversion',{send_to:adsConversion});
+ }
+},true);
 const planPrices={'500 Mega':'99,90','700 Mega':'129,90','900 Mega':'149,90','1000 Mega':'199,90'};
 function whatsappUrl(interest){const price=planPrices[interest];const message=price?'Olá! Encontrei a Canaã pelo Google e gostaria de falar com um atendente. Tenho interesse no plano de '+interest+' por R$ '+price+'/mês. Gostaria de consultar a cobertura para meu endereço.':'Olá! Encontrei a Canaã pelo Google e gostaria de falar com um atendente. Tenho interesse em '+interest+'. Gostaria de consultar as opções e a cobertura para meu endereço.';return 'https://wa.me/'+commercialPhone+'?text='+encodeURIComponent(message);}
 document.querySelectorAll('[data-plan]').forEach(button=>button.addEventListener('click',()=>{openContactChoice(button.dataset.plan,button);}));
