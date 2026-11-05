@@ -1,5 +1,5 @@
 const commercialPhone='556140426929';
-const adsConversion='AW-10780783077/AuuiCOKuo_wCEOXj1pQo';
+const adsConversion='AW-10780783077/gemHCKiz6bIdEOXj1pQo';
 document.addEventListener('click',event=>{
  const whatsappLink=event.target.closest('a[href^="https://wa.me/"]');
  if(whatsappLink&&typeof window.gtag==='function'){
