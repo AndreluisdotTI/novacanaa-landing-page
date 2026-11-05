@@ -1,6 +1,6 @@
 const commercialPhone='556140426929';
 const planPrices={'500 Mega':'99,90','700 Mega':'129,90','900 Mega':'149,90','1000 Mega':'199,90'};
-function whatsappUrl(interest){const price=planPrices[interest];const message=price?'Olá! Encontrei a Canaã pelo Google e gostaria de falar com um atendente. Tenho interesse no plano de '+interest+' por R$ '+price+'/mês. Gostaria de consultar a cobertura para meu endereço.':'Olá! Encontrei a Canaã pelo Google e gostaria de falar com um atendente. Tenho interesse em '+interest+'. Gostaria de consultar as opções e a cobertura para meu endereço.';return 'https://web.whatsapp.com/send?phone='+commercialPhone+'&text='+encodeURIComponent(message);}
+function whatsappUrl(interest){const price=planPrices[interest];const message=price?'Olá! Encontrei a Canaã pelo Google e gostaria de falar com um atendente. Tenho interesse no plano de '+interest+' por R$ '+price+'/mês. Gostaria de consultar a cobertura para meu endereço.':'Olá! Encontrei a Canaã pelo Google e gostaria de falar com um atendente. Tenho interesse em '+interest+'. Gostaria de consultar as opções e a cobertura para meu endereço.';return 'https://wa.me/'+commercialPhone+'?text='+encodeURIComponent(message);}
 document.querySelectorAll('[data-plan]').forEach(button=>button.addEventListener('click',()=>{openContactChoice(button.dataset.plan,button);}));
 document.querySelectorAll('.choices button').forEach(button=>button.addEventListener('click',()=>{button.parentElement.querySelectorAll('button').forEach(b=>{b.classList.remove('selected');b.setAttribute('aria-pressed','false')});button.classList.add('selected');button.setAttribute('aria-pressed','true');const p=+document.querySelector('#people .selected').dataset.value,d=+document.querySelector('#devices .selected').dataset.value;const plan=p>=5||d>=10?'1000 Mega':p>=4||d>=8?'900 Mega':p>=2||d>=4?'700 Mega':'500 Mega';document.getElementById('recommended').textContent=plan;document.getElementById('quiz-cta').dataset.plan=plan;}));
 document.getElementById('contact-form').addEventListener('submit',event=>{event.preventDefault();openContactChoice(document.getElementById('interest').value,event.submitter);});
@@ -69,7 +69,7 @@ function openContactChoice(interest,trigger){
  const newLink=document.getElementById('contact-new');
  const existingLink=document.getElementById('contact-existing');
  newLink.href=whatsappUrl(interest||'internet residencial');
- existingLink.href='https://web.whatsapp.com/send?phone='+commercialPhone+'&text='+encodeURIComponent('Olá! Encontrei a Canaã pelo Google. Já sou cliente e gostaria de falar com um atendente.');
+ existingLink.href='https://wa.me/'+commercialPhone+'?text='+encodeURIComponent('Olá! Encontrei a Canaã pelo Google. Já sou cliente e gostaria de falar com um atendente.');
  [newLink,existingLink].forEach(link=>{link.target='_blank';link.rel='noopener noreferrer';});
  if(!contactDialog.open)contactDialog.showModal();
 }
